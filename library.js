@@ -76,8 +76,8 @@ const displayBookDetails = books => {
         </div>
         <div class="col-md-2">
         <button type="button" class="btn btn-secondary"> View details </button> <br><br>
-        <button type="button" class="btn btn-secondary">Add to cart </button> <br><br>
-        <button type="button" class="btn btn-secondary">Buy now </button> 
+        <button type="button" class="btn btn-secondary"> Read PDF </button> <br><br>
+        
         
     </div>
     `
