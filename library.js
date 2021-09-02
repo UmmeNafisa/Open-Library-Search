@@ -1,7 +1,8 @@
 const bookContainer = document.getElementById("books-details");
 const foundBooks = document.getElementById("found-items");
 let text;
-//spinner function 
+
+//spinner and book details function 
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
 }
@@ -36,7 +37,7 @@ function loadBook(searchText) {
 
 // displayBookDetails
 const displayBookDetails = books => {
-    console.log(books)
+    // console.log(books)
     //clear text content 
     bookContainer.textContent = "";
 
@@ -82,6 +83,7 @@ const displayBookDetails = books => {
     </div>
     `
         bookContainer.appendChild(div);
+
         // display data and disappear spinner
         toggleSpinner('none')
         toggleBookDetails("block");
