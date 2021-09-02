@@ -45,10 +45,10 @@ const displayBookDetails = books => {
     //found total books number display
     const foundBooks = document.getElementById("found-items");
     console.log(books.numFound);
-    if (books.numFound > 21) {
-        foundBooks.innerText = `1-20 of ${books.numFound} results for "${text}"`
+    if (books.numFound > 11) {
+        foundBooks.innerText = `1-10 of ${books.numFound} results for "${text}"`
         foundBooks.style.color = "white"
-    } else if (books.numFound <= 20 && bookDoc.length > 0) {
+    } else if (books.numFound <= 10 && bookDoc.length > 0) {
         foundBooks.innerText = `${books.numFound} results for "${text}"`
         foundBooks.style.color = "white"
     } else if (books.numFound === 0) {
@@ -59,7 +59,7 @@ const displayBookDetails = books => {
     }
 
     //books details 
-    bookDoc.slice(0, 20)?.forEach(book => {
+    bookDoc.slice(0, 10)?.forEach(book => {
         const div = document.createElement('div')
         div.classList.add("divDisplay")
         div.innerHTML = ` 
@@ -69,9 +69,9 @@ const displayBookDetails = books => {
         <div class="col-md-7">
             <div class="card-body">
                 <h5 class="card-title">${book.title}</h5>
-                <p class="card-text"> By <small class="text-muted">${book.author_name.map(name => (" " + name))}</small></p>
+                <p class="card-text"> By <small class="text-muted">${book.author_name ? book.author_name.map(name => (" " + name)) : " 'Not available' "}</small></p>
                 <p class="card-text"> First publish year : ${book.first_publish_year ? book.first_publish_year : " 'Not available' "} </p>
-                <p class="card-text"> Publisher : ${book.publisher[0] ? book.publisher[0] : " 'Not available' "} </p>
+                <p class="card-text"> Publisher : ${book.publisher ? book.publisher[0] : " 'Not available' "} </p>
             </div>
         </div>
         <div class="col-md-2">
