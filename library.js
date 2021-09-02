@@ -1,6 +1,6 @@
 const bookContainer = document.getElementById("books-details");
 const foundBooks = document.getElementById("found-items");
-
+let text;
 //spinner function 
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
@@ -13,19 +13,16 @@ const toggleBookDetails = displayStyle => {
 const searchBook = () => {
     const searchInput = document.getElementById("input-field");
     let searchText = searchInput.value;
+    text = searchText;
     // display spinner and disappear previous data 
     toggleSpinner('block')
+    foundBooks.innerText = ""
     toggleBookDetails("none");
 
     loadBook(searchText);
 
     //clear the filed 
     searchInput.value = "";
-
-    // error handling when the input field is empty
-    if (searchText == '') {
-        document.getElementById('error-message').style.display = 'block';
-    }
 }
 
 // load data 
@@ -34,41 +31,39 @@ function loadBook(searchText) {
     fetch(url)
         .then(res => res.json())
         .then(data => displayBookDetails(data))
-        .catch((error) => displayError());
-}
 
-//error massage display 
-const displayError = () => {
-    document.getElementById('error-message').style.display = 'block';
 }
 
 // displayBookDetails
 const displayBookDetails = books => {
     console.log(books)
+    //clear text content 
     bookContainer.textContent = "";
-    let searchText = document.getElementById("input-field").value;
+
     const bookDoc = books.docs;
+
+    //found total books number display
     const foundBooks = document.getElementById("found-items");
     console.log(books.numFound);
-    //found total books number display
-    if (books.numFound > 11) {
-        foundBooks.innerText = `1-10 of ${books.numFound} results for "${searchText}"`
-    } else if (books.numFound <= 10 && bookDoc.length > 0) {
-        foundBooks.innerText = `${books.numFound} results for "${searchText}"`
+    if (books.numFound > 21) {
+        foundBooks.innerText = `1-20 of ${books.numFound} results for "${text}"`
+    } else if (books.numFound <= 20 && bookDoc.length > 0) {
+        foundBooks.innerText = `${books.numFound} results for "${text}"`
     } else if (books.numFound === 0) {
+        //error handling
         foundBooks.innerText = `No result found, please enter a valid name`
         toggleSpinner('none')
     }
 
     //books details 
-    bookDoc.slice(0, 10)?.forEach(book => {
+    bookDoc.slice(0, 20)?.forEach(book => {
         const div = document.createElement('div')
         div.classList.add("divDisplay")
         div.innerHTML = ` 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="img-fluid rounded-start" alt="...">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card-body">
                 <h5 class="card-title">${book.title}</h5>
                 <p class="card-text"> By <small class="text-muted">${book.author_name.map(name => (" " + name))}</small></p>
@@ -76,9 +71,14 @@ const displayBookDetails = books => {
                 <p class="card-text"> Publisher : ${book.publisher[0] ? book.publisher[0] : " 'Not available' "} </p>
             </div>
         </div>
+        <div class="col-md-2">
+        <button type="button" class="btn btn-secondary"> View details </button> <br><br>
+        <button type="button" class="btn btn-secondary">Add to cart </button> <br><br>
+        <button type="button" class="btn btn-secondary">Buy now </button> 
+        
+    </div>
     `
         bookContainer.appendChild(div);
-        document.getElementById('error-message').style.display = 'none';
         // display data and disappear spinner
         toggleSpinner('none')
         toggleBookDetails("block");
