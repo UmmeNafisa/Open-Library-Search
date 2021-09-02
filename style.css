@@ -6,10 +6,19 @@ body {
 h1{
     text-shadow: 2px 2px 4px #929eaa;
 }
+.booksDiv{
+   width: 65%;
+
+}
 .divDisplay{
+    width: 90%;
     display: flex;
+    justify-content: center;
     background-color: #f9f9f9;  
-    padding: 0;;
+    padding: 20px;
+    margin:auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .displayErrorMsg{

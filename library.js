@@ -30,7 +30,7 @@ const searchBook = () => {
 
 // load data 
 function loadBook(searchText) {
-    const url = `http://openlibrary.org/search.json?q=${searchText}`
+    const url = `https://openlibrary.org/search.json?q=${searchText}`
     fetch(url)
         .then(res => res.json())
         .then(data => displayBookDetails(data))
@@ -52,7 +52,7 @@ const displayBookDetails = books => {
     console.log(books.numFound);
     //found total books number display
     if (books.numFound > 11) {
-        foundBooks.innerText = `1-6 of ${books.numFound} results for "${searchText}"`
+        foundBooks.innerText = `1-10 of ${books.numFound} results for "${searchText}"`
     } else if (books.numFound <= 10 && bookDoc.length > 0) {
         foundBooks.innerText = `${books.numFound} results for "${searchText}"`
     } else if (books.numFound === 0) {
@@ -72,9 +72,8 @@ const displayBookDetails = books => {
             <div class="card-body">
                 <h5 class="card-title">${book.title}</h5>
                 <p class="card-text"> By <small class="text-muted">${book.author_name.map(name => (" " + name))}</small></p>
-                <p class="card-text"> First publish year : ${book.first_publish_year} </p>
-                <p class="card-text"> Publisher : ${book.publisher[0]} </p>
-            
+                <p class="card-text"> First publish year : ${book.first_publish_year ? book.first_publish_year : " 'Not available' "} </p>
+                <p class="card-text"> Publisher : ${book.publisher[0] ? book.publisher[0] : " 'Not available' "} </p>
             </div>
         </div>
     `
