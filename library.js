@@ -47,11 +47,14 @@ const displayBookDetails = books => {
     console.log(books.numFound);
     if (books.numFound > 21) {
         foundBooks.innerText = `1-20 of ${books.numFound} results for "${text}"`
+        foundBooks.style.color = "white"
     } else if (books.numFound <= 20 && bookDoc.length > 0) {
         foundBooks.innerText = `${books.numFound} results for "${text}"`
+        foundBooks.style.color = "white"
     } else if (books.numFound === 0) {
         //error handling
         foundBooks.innerText = `No result found, please enter a valid name`
+        foundBooks.style.color = "white"
         toggleSpinner('none')
     }
 
