@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Library</title>
+
+    <!-- bootstrap css link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- internal css  -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h1 class="text-center mt-3 w-75 mx-auto py-2"> Books are the treasure house of knowledge
+    </h1>
+    <!-- input field -->
+    <form class="col-md-6 m-auto py-5">
+        <div class="input-group mb-3">
+            <input id="input-field" type="text" class="form-control me-3" placeholder="Enter a book name">
+            <div class="input-group-append">
+                <button id="search-btn" onclick="searchBook()" type="button" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+        <!-- error handling msg -->
+        <p class="displayErrorMsg text-center fw-bold" id="error-message"> Please enter a Valid book name</p>
+
+        <!-- spinner part -->
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" id="spinner" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+        </div>
+        <!-- found-items -->
+        <h5 id="found-items" class="text-center mb-3"> </h5>
+    </form>
+
+
+    <!-- book details -->
+    </div>
+    <div class="card mb-3 container border-0">
+        <div class="row gx-lg-2 gy-lg-5 g-sm-0 row-cols-2" id="books-details">
+
+        </div>
+    </div>
+
+    <!-- script linked -->
+    <script src="library.js"></script>
+</body>
+
+</html>
